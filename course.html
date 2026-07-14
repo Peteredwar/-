@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title id="pageTitle">الكورس — مستر بيتر إدوار</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<link rel="stylesheet" href="./style.css"/>
+<link rel="stylesheet" href="./course.css"/>
+<link rel="stylesheet" href="./exam.css"/>
+</head>
+<body class="light-mode">
+
+<button id="scrollTopBtn" aria-label="أعلى"><i class="fas fa-arrow-up"></i></button>
+
+<!-- Top Bar -->
+<header class="course-topbar">
+  <div class="course-topbar-inner">
+    <a href="./index.html" class="course-back"><i class="fas fa-arrow-right"></i> الرئيسية</a>
+    <span class="course-topbar-title" id="courseTopbarTitle">الكورس</span>
+    <div style="display:flex;gap:10px;align-items:center">
+      <button id="themeToggle" class="theme-btn" aria-label="وضع"><i class="fas fa-moon" id="themeIcon"></i></button>
+    </div>
+  </div>
+</header>
+
+<!-- Tab Navigation -->
+<div class="course-tabs-bar">
+  <div class="course-tabs">
+    <button class="course-tab active" data-tab="videos"><i class="fas fa-play-circle"></i> الفيديوهات</button>
+    <button class="course-tab" data-tab="books"><i class="fas fa-book"></i> الكتب</button>
+    <button class="course-tab" data-tab="exams"><i class="fas fa-file-alt"></i> الامتحانات</button>
+  </div>
+</div>
+
+<main class="course-page-wrap">
+  <div class="container">
+
+    <!-- ══ VIDEOS TAB ══════════════════════════════════ -->
+    <div class="tab-content active" id="tab-videos">
+      <div class="course-page-header reveal-up">
+        <span class="section-tag">الفيديوهات</span>
+        <h1 class="course-page-title">دروس الفيديو</h1>
+        <p class="course-page-sub">جميع الدروس المرئية مرتبة حسب الوحدة</p>
+      </div>
+      <div id="videosWrap" class="lessons-section reveal-up"></div>
+      <div id="videosEmpty" class="course-empty-state" style="display:none">
+        <i class="fas fa-video"></i>
+        <p>لا توجد فيديوهات بعد</p>
+        <span>سيتم إضافة الفيديوهات قريبًا</span>
+      </div>
+    </div>
+
+    <!-- ══ BOOKS TAB ═══════════════════════════════════ -->
+    <div class="tab-content" id="tab-books">
+      <div class="course-page-header reveal-up">
+        <span class="section-tag">الكتب</span>
+        <h1 class="course-page-title">الكتب والمراجع</h1>
+        <p class="course-page-sub">جميع الكتب والملفات الدراسية</p>
+      </div>
+      <div id="booksGrid" class="books-grid reveal-up"></div>
+      <div id="booksEmpty" class="course-empty-state" style="display:none">
+        <i class="fas fa-book"></i>
+        <p>لا توجد كتب بعد</p>
+        <span>سيتم إضافة الكتب قريبًا</span>
+      </div>
+    </div>
+
+    <!-- ══ EXAMS TAB ═══════════════════════════════════ -->
+    <div class="tab-content" id="tab-exams">
+      <div class="course-page-header reveal-up">
+        <span class="section-tag">الامتحانات</span>
+        <h1 class="course-page-title">الامتحانات</h1>
+        <p class="course-page-sub">اختر الامتحان وابدأ</p>
+      </div>
+      <div id="examsGrid" class="courses-grid reveal-up"></div>
+      <div id="examsEmpty" class="course-empty-state" style="display:none">
+        <i class="fas fa-file-alt"></i>
+        <p>لا توجد امتحانات بعد</p>
+        <span>سيتم إضافة الامتحانات قريبًا</span>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<!-- Video Modal -->
+<div id="videoModal" class="video-modal" role="dialog" aria-modal="true">
+  <div class="video-modal-inner">
+    <button class="video-modal-close" id="videoModalClose" aria-label="إغلاق"><i class="fas fa-times"></i></button>
+    <div class="video-embed-wrap">
+      <iframe id="videoFrame" src="" allowfullscreen allow="autoplay;encrypted-media" title="درس"></iframe>
+    </div>
+  </div>
+</div>
+
+<script src="./data-loader.js"></script><script src="./script.js"></script>
+<script src="./course.js"></script>
+</body>
+</html>

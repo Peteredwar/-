@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>الامتحان — مستر بيتر إدوار</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<link rel="stylesheet" href="./style.css"/>
+<link rel="stylesheet" href="./exam.css"/>
+<link rel="stylesheet" href="./access.css"/>
+</head>
+<body class="light-mode exam-secure-body">
+
+<!-- Exam Wrapper -->
+<div class="student-exam-wrap" id="examWrap">
+
+  <!-- Loading -->
+  <div class="exam-loading" id="examLoading">
+    <div class="loader-inner">
+      <div class="loader-logo"><span class="logo-en">Exam</span><span class="logo-dot">●</span><span class="logo-ar">امتحان</span></div>
+      <div class="loader-bar-track"><div class="loader-bar-fill"></div></div>
+      <p class="loader-text">جاري تحميل الامتحان…</p>
+    </div>
+  </div>
+
+  <!-- Blocked state -->
+  <div class="exam-blocked" id="examBlocked" style="display:none">
+    <div class="exam-blocked-inner">
+      <i class="fas fa-ban"></i>
+      <h2 id="examBlockedTitle">انتهى الامتحان</h2>
+      <p id="examBlockedMsg1">لقد غادرت الامتحان أو انتهت المدة المحددة.</p>
+      <p id="examBlockedMsg2">لا يمكنك المتابعة من حيث توقفت.</p>
+      <a href="./index.html" class="btn btn-primary"><i class="fas fa-home"></i> العودة للرئيسية</a>
+    </div>
+  </div>
+
+  <!-- Student info gate (must fill before starting) -->
+  <div class="exam-blocked" id="examInfoGate" style="display:none">
+    <div class="exam-blocked-inner" style="max-width:420px">
+      <i class="fas fa-user-edit"></i>
+      <h2>قبل ما تبدأ</h2>
+      <p style="margin-bottom:18px">اكتب بياناتك بالكامل — من غيرها مش هتقدر تبدأ الامتحان</p>
+      <form id="examInfoForm" class="access-form" novalidate style="text-align:right">
+        <div class="form-group">
+          <label>الاسم بالكامل</label>
+          <input type="text" id="fStudentName" class="access-input" placeholder="اكتب اسمك بالكامل" autocomplete="off" required/>
+        </div>
+        <div class="form-group" style="margin-top:14px">
+          <label>المجموعة / المعاد</label>
+          <input type="text" id="fStudentGroup" class="access-input" placeholder="مثال: جروب السبت 5 مساءً" autocomplete="off" required/>
+        </div>
+        <p id="infoGateError" class="access-error"><i class="fas fa-circle-exclamation"></i><span>من فضلك اكتب الاسم والمجموعة كاملين</span></p>
+        <button type="submit" class="btn btn-primary btn-full" style="margin-top:16px"><i class="fas fa-play"></i> ابدأ الامتحان</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Active exam -->
+  <div class="exam-active" id="examActive" style="display:none">
+
+    <!-- Top bar -->
+    <div class="exam-bar">
+      <div class="exam-bar-title" id="examBarTitle">الامتحان</div>
+      <div class="exam-timer" id="examTimer">
+        <i class="fas fa-clock"></i>
+        <span id="timerDisplay">00:00</span>
+      </div>
+      <div class="exam-bar-info">
+        <span id="examProgress">0 / 0</span>
+      </div>
+    </div>
+
+    <!-- Questions -->
+    <div class="exam-body">
+      <div class="exam-questions-list" id="examQuestions"></div>
+
+      <div class="exam-submit-area">
+        <button class="btn btn-primary btn-submit-exam" id="btnSubmitExam">
+          <i class="fas fa-paper-plane"></i> تسليم الامتحان
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Result screen -->
+  <div class="exam-result" id="examResult" style="display:none">
+    <div class="result-card">
+      <div class="result-icon" id="resultIcon"><i class="fas fa-trophy"></i></div>
+      <h2 class="result-title">انتهى الامتحان</h2>
+      <div class="result-score">
+        <span id="resultScore">0</span>
+        <span class="result-sep">/</span>
+        <span id="resultTotal">0</span>
+      </div>
+      <div class="result-pct" id="resultPct">0%</div>
+      <div class="result-grade" id="resultGrade"></div>
+      <div class="result-meta">
+        <div><i class="fas fa-clock"></i> الوقت المستغرق: <strong id="resultTime">—</strong></div>
+      </div>
+      <a href="./index.html" class="btn btn-primary result-home-btn">
+        <i class="fas fa-home"></i> العودة للرئيسية
+      </a>
+    </div>
+  </div>
+
+</div>
+
+<!-- Submit confirm overlay -->
+<div id="submitConfirm" class="exam-modal-overlay" style="display:none">
+  <div class="exam-modal-box">
+    <i class="fas fa-paper-plane modal-icon-big"></i>
+    <h3>تسليم الامتحان؟</h3>
+    <p id="submitConfirmMsg">هل أنت متأكد أنك تريد تسليم الامتحان الآن؟</p>
+    <div class="modal-btns">
+      <button class="btn btn-primary" id="submitConfirmOk">نعم، سلّم</button>
+      <button class="btn btn-ghost-dark" id="submitConfirmCancel">تراجع</button>
+    </div>
+  </div>
+</div>
+
+<script src="./data-loader.js"></script><script src="./script.js"></script>
+<script src="./exam-student.js"></script>
+</body>
+</html>
