@@ -1,0 +1,213 @@
+/* =========================================================
+   mobile-fix.css
+   ملف إضافي لحل مشاكل عرض الموقع على الموبايل
+   يتضاف بعد ملفات الـ CSS التانية في كل صفحة (بدون ما تلمس أي ملف قديم)
+   ========================================================= */
+
+/* 1) يمنع أي سكرول جانبي (يمين/شمال) ممكن يحصل بسبب عناصر خارجة برا الشاشة */
+html, body {
+  overflow-x: hidden !important;
+  max-width: 100%;
+}
+* {
+  max-width: 100%;
+}
+
+/* 2) ارتفاع الهيرو الصحيح على الموبايل (100vh بيعمل مشاكل مع شريط العنوان في المتصفح) */
+.section-hero {
+  min-height: 100svh;
+}
+@supports (min-height: 100dvh) {
+  .section-hero {
+    min-height: 100dvh;
+  }
+}
+
+/* 3) يمنع تكبير الصفحة تلقائي لما تدوس على أي مربع كتابة (خصوصًا في iPhone) */
+input, textarea, select {
+  font-size: 16px !important;
+}
+
+/* 4) يمنع بقاء تأثيرات hover "عالقة" بعد ما تدوس بإصبعك (مشكلة شائعة جدًا على الموبايل) */
+@media (hover: none), (pointer: coarse) {
+  .feature-card:hover,
+  .course-card:hover,
+  .contact-card:hover,
+  .social-btn:hover,
+  .pdf-item:hover,
+  .video-item.video-ready:hover,
+  .gallery-item:hover img,
+  .btn-primary:hover,
+  .btn-ghost:hover,
+  .btn-enroll:hover,
+  #scrollTopBtn:hover {
+    transform: none !important;
+    box-shadow: revert !important;
+  }
+  .gallery-item:hover .gallery-overlay {
+    opacity: 0 !important;
+  }
+  .feature-card:hover::before {
+    opacity: 0 !important;
+  }
+}
+
+/* 5) لمسة أخف وأسرع للأزرار والروابط بدل تأخير النقر الافتراضي */
+a, button, .btn, .course-card, .feature-card, .gallery-item {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+/* 6) يخلي القائمة المتحركة (الهامبرجر) والقوائم تحت الناف بار مش مخبيه ورا أي عنصر */
+.mobile-menu {
+  max-height: calc(100svh - var(--nav-height, 64px));
+  overflow-y: auto;
+}
+
+/* 7) يمنع إن العناوين تختفي تحت الناف بار الثابت لما تدوس على رابط بيودّيك لجزء في نفس الصفحة */
+section[id], main[id] {
+  scroll-margin-top: calc(var(--nav-height, 64px) + 10px);
+}
+
+/* 8) أزرار وأيقونات بحجم مناسب للمس (مش صغيرة قوي بحيث يصعب الدوس عليها) */
+.hamburger,
+.theme-btn,
+.social-btn,
+.lightbox-close,
+.video-modal-close,
+#scrollTopBtn {
+  min-width: 40px;
+  min-height: 40px;
+}
+
+/* =========================================================
+   Name Gate — شاشة "اكتب اسمك الثلاثي" قبل دخول الكورس
+   ========================================================= */
+.name-gate-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 20000;
+  background: rgba(15, 23, 42, 0.92);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.name-gate-overlay.show {
+  display: flex;
+}
+.name-gate-box {
+  background: var(--bg-card, #fff);
+  border-radius: 18px;
+  padding: 34px 26px;
+  width: 100%;
+  max-width: 380px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+.name-gate-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(37, 99, 235, 0.12);
+  color: var(--blue, #2563eb);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  margin: 0 auto 16px;
+}
+.name-gate-box h2 {
+  font-size: 1.2rem;
+  margin-bottom: 6px;
+  color: var(--text, #0f172a);
+}
+.name-gate-box p {
+  font-size: 0.9rem;
+  color: var(--text-muted, #64748b);
+  margin-bottom: 20px;
+}
+#nameGateForm {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+#nameGateInput {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1.5px solid var(--border, #e2e8f0);
+  font-size: 16px; /* يمنع تكبير iOS التلقائي */
+  text-align: center;
+  font-family: inherit;
+  background: var(--bg, #fff);
+  color: var(--text, #0f172a);
+}
+#nameGateInput.error {
+  border-color: #dc2626;
+}
+.name-gate-error {
+  color: #dc2626;
+  font-size: 0.8rem;
+  min-height: 14px;
+  display: block;
+}
+#nameGateForm .btn {
+  width: 100%;
+  justify-content: center;
+  padding: 13px 16px;
+}
+body.no-scroll {
+  overflow: hidden;
+}
+
+/* 9) فيديوهات الـ iframe تفضل متناسبة مع الشاشة ومتقصش من الجنب */
+.video-embed-wrap iframe {
+  max-width: 100%;
+}
+
+/* 9-ب) صندوق الفيديو (الحوار/الـ Modal) على الموبايل: يبان كامل ومش مقطوع
+   من فوق أو من تحت، ولو الفيديو نفسه رفض يفتح جوه الصندوق، بيظهر تحته
+   زرار "افتح الفيديو من هنا" يفتحه في تاب/تطبيق درايف مباشرة */
+.video-modal {
+  padding: 12px;
+}
+.video-modal-inner {
+  max-height: 92svh;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.video-open-direct {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-align: center;
+}
+@media (max-width: 560px) {
+  .video-modal-close {
+    top: -40px;
+  }
+  .video-open-direct {
+    font-size: 0.8rem;
+    padding: 12px 14px;
+  }
+}
+
+/* 10) على الشاشات الصغيرة جدًا، تصغير هوامش شوية عشان محتوى الكروت ميبقاش ضيق أوي */
+@media (max-width: 380px) {
+  .container {
+    padding: 0 16px;
+  }
+  .access-card {
+    padding: 26px 18px;
+  }
+}

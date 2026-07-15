@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
+  initNameGate();
   loadCourseHeader();
   initTabs();
   loadVideos();
@@ -24,6 +25,85 @@ document.addEventListener('DOMContentLoaded', () => {
   initVideoModal();
   initScrollTop();
 });
+
+/* ══ NAME GATE (اسم الطالب الثلاثي قبل دخول الكورس) ══════════ */
+function _getSettings() {
+  try { return JSON.parse(localStorage.getItem('admin_settings') || '{}'); } catch { return {}; }
+}
+
+function initNameGate() {
+  const overlay = document.getElementById('nameGateOverlay');
+  const form    = document.getElementById('nameGateForm');
+  const input   = document.getElementById('nameGateInput');
+  const errBox  = document.getElementById('nameGateError');
+  if (!overlay || !form || !input) return;
+
+  const gateKey = 'studentFullName_' + _activeCourseId;
+  const savedName = sessionStorage.getItem(gateKey);
+
+  // الطالب كتب اسمه قبل كده في نفس الجلسة على نفس الكورس → منعرضش الشاشة تاني
+  if (savedName) {
+    overlay.classList.remove('show');
+    document.body.classList.remove('no-scroll');
+    return;
+  }
+
+  overlay.classList.add('show');
+  document.body.classList.add('no-scroll');
+  input.focus();
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const raw = input.value.trim().replace(/\s+/g, ' ');
+    const parts = raw.split(' ').filter(Boolean);
+
+    const validParts = parts.every(p => /^[a-zA-Zأ-يءئؤة]{2,}$/.test(p));
+
+    if (parts.length < 3 || !validParts) {
+      errBox.textContent = 'من فضلك اكتب اسمك الثلاثي كامل (اسم اسم اسم)';
+      input.classList.add('error');
+      return;
+    }
+
+    errBox.textContent = '';
+    input.classList.remove('error');
+    sessionStorage.setItem(gateKey, raw);
+
+    _sendNameToSheet(raw);
+
+    overlay.classList.remove('show');
+    document.body.classList.remove('no-scroll');
+  });
+}
+
+function _sendNameToSheet(name) {
+  const url = _getSettings().namesSheetUrl;
+  if (!url) return; // لسه المستر ماحطش رابط شيت الأسماء من صفحة الإعدادات
+
+  let courseName = 'الكورس';
+  try {
+    const courses = JSON.parse(localStorage.getItem('admin_courses') || '[]');
+    const c = courses.find(c => c.id === _activeCourseId);
+    if (c) courseName = c.name;
+  } catch (_) {}
+
+  const now = new Date();
+  const data = {
+    date: now.toLocaleDateString('ar-EG'),
+    time: now.toLocaleTimeString('ar-EG'),
+    name,
+    courseName
+  };
+
+  try {
+    fetch(url, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    }).catch(() => {});
+  } catch (_) {}
+}
 
 /* ══ COURSE HEADER (name from the active course) ══════════════ */
 function loadCourseHeader() {
@@ -69,8 +149,8 @@ function loadVideos() {
     <div style="margin-bottom:36px">
       <h2 class="lessons-heading"><i class="fas fa-folder-open"></i> ${esc(lesson)}</h2>
       <div class="video-list">
-        ${vids.map(v => { const embedUrl = toEmbedUrl(v.url||''); const thumb = v.thumb || driveThumb(v.url); return `
-          <div class="video-item video-ready" data-src="${esc(embedUrl)}" style="cursor:${v.url?'pointer':'default'}">
+        ${vids.map(v => { const embedUrl = toEmbedUrl(v.url||''); const viewUrl = toViewUrl(v.url||''); const thumb = v.thumb || driveThumb(v.url); return `
+          <div class="video-item video-ready" data-src="${esc(embedUrl)}" data-view="${esc(viewUrl)}" style="cursor:${v.url?'pointer':'default'}">
             <div class="video-thumb">
               ${thumb ? `<img src="${esc(thumb)}" alt="${esc(v.title)}" style="width:100%;height:100%;object-fit:cover" onerror="this.style.display='none'"/>` : ''}
               <div class="video-play-btn"><i class="fas fa-play"></i></div>
@@ -87,7 +167,7 @@ function loadVideos() {
   // Click to open modal
   wrap.querySelectorAll('.video-item[data-src]').forEach(item => {
     if (!item.dataset.src) return;
-    item.addEventListener('click', () => openVideo(item.dataset.src));
+    item.addEventListener('click', () => openVideo(item.dataset.src, item.dataset.view));
   });
 }
 
@@ -164,27 +244,30 @@ function initVideoModal() {
   const modal    = document.getElementById('videoModal');
   const frame    = document.getElementById('videoFrame');
   const closeBtn = document.getElementById('videoModalClose');
+  const openDirect = document.getElementById('videoOpenDirect');
   if (!modal) return;
 
   const close = () => {
     modal.classList.remove('open');
     frame.src = '';
+    if (openDirect) openDirect.href = '';
     document.body.classList.remove('no-scroll');
   };
 
   closeBtn?.addEventListener('click', close);
   modal.addEventListener('click', e => e.target === modal && close());
   document.addEventListener('keydown', e => e.key === 'Escape' && close());
-  window._openVideo = src => {
+  window._openVideo = (src, viewUrl) => {
     frame.src = src;
+    if (openDirect) openDirect.href = viewUrl || src;
     modal.classList.add('open');
     document.body.classList.add('no-scroll');
   };
 }
 
-function openVideo(src) {
+function openVideo(src, viewUrl) {
   if (!src) return;
-  if (window._openVideo) window._openVideo(src);
+  if (window._openVideo) window._openVideo(src, viewUrl);
 }
 
 /* ══ SCROLL TOP ══════════════════════════════════════ */
@@ -216,6 +299,13 @@ function driveFileId(url) {
 function toEmbedUrl(url) {
   const id = driveFileId(url);
   return id ? `https://drive.google.com/file/d/${id}/preview` : url;
+}
+/* رابط مباشر (بدون iframe) لفتح الفيديو نفسه - ده اللي بيشتغل مضمون على الموبايل
+   لو الـ preview بتاع درايف رفض يفتح جوه التطبيق (مشكلة معروفة في متصفح
+   الموبايل الداخلي زي واتساب/إنستجرام، أو لو ملف الفيديو مش متشارك "لأي حد معاه اللينك"). */
+function toViewUrl(url) {
+  const id = driveFileId(url);
+  return id ? `https://drive.google.com/file/d/${id}/view` : url;
 }
 function driveThumb(url) {
   const id = driveFileId(url);

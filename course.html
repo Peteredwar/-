@@ -11,8 +11,23 @@
 <link rel="stylesheet" href="./style.css"/>
 <link rel="stylesheet" href="./course.css"/>
 <link rel="stylesheet" href="./exam.css"/>
+<link rel="stylesheet" href="./mobile-fix.css"/>
 </head>
 <body class="light-mode">
+
+<!-- Name Gate: لازم الطالب يكتب اسمه الثلاثي قبل ما يدخل الكورس -->
+<div id="nameGateOverlay" class="name-gate-overlay">
+  <div class="name-gate-box">
+    <div class="name-gate-icon"><i class="fas fa-user-edit"></i></div>
+    <h2>قبل ما تبدأ الكورس</h2>
+    <p>من فضلك اكتب اسمك الثلاثي عشان نسجل حضورك</p>
+    <form id="nameGateForm" autocomplete="off">
+      <input type="text" id="nameGateInput" placeholder="مثال: أحمد محمد علي" autocomplete="off"/>
+      <span class="name-gate-error" id="nameGateError"></span>
+      <button type="submit" class="btn btn-primary"><i class="fas fa-check"></i> دخول الكورس</button>
+    </form>
+  </div>
+</div>
 
 <button id="scrollTopBtn" aria-label="أعلى"><i class="fas fa-arrow-up"></i></button>
 
@@ -92,8 +107,11 @@
   <div class="video-modal-inner">
     <button class="video-modal-close" id="videoModalClose" aria-label="إغلاق"><i class="fas fa-times"></i></button>
     <div class="video-embed-wrap">
-      <iframe id="videoFrame" src="" allowfullscreen allow="autoplay;encrypted-media" title="درس"></iframe>
+      <iframe id="videoFrame" src="" allowfullscreen allow="autoplay;encrypted-media;fullscreen" title="درس"></iframe>
     </div>
+    <a id="videoOpenDirect" href="" target="_blank" rel="noopener" class="video-open-direct">
+      <i class="fas fa-external-link-alt"></i> لو الفيديو مش بيظهر، افتحه من هنا
+    </a>
   </div>
 </div>
 

@@ -189,10 +189,19 @@
       "desc": ""
     }
   ],
-  "announcements": [],
+  "announcements": [
+    {
+      "id": "_rxkn6th",
+      "title": "الان كورس التأسيس علي المنصه",
+      "type": "info",
+      "body": "الان كورس التأسيس علي المنصه",
+      "date": ""
+    }
+  ],
   "settings": {
     "whatsapp": "201097085470",
-    "sheetUrl": "https://script.google.com/macros/s/AKfycbxwF0hGuJnB5ZcOluOaf2J69NDnAH8CPwdOAmpfyF6mIie7ovufMPlzVAt3QMs39hoS/exec"
+    "sheetUrl": "https://script.google.com/macros/s/AKfycbxwF0hGuJnB5ZcOluOaf2J69NDnAH8CPwdOAmpfyF6mIie7ovufMPlzVAt3QMs39hoS/exec",
+    "namesSheetUrl": "https://script.google.com/macros/s/AKfycbynpDXFDRubgHkWhhmKHZ3g4YrB1K-lAW6ACcFxL5BR6Kr6CyXN3L-_slvbx_Nw39uQ/exec"
   },
-  "exportedAt": "2026-07-14T16:57:02.725Z"
+  "exportedAt": "2026-07-15T07:22:01.351Z"
 }
