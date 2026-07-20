@@ -112,7 +112,28 @@
       "createdAt": 1783872507972
     }
   ],
-  "exams": [],
+  "exams": [
+    {
+      "id": "_svsomtn",
+      "courseId": "_57c55ke",
+      "name": "امتحان المحاضره الاولى",
+      "totalMarks": 100,
+      "duration": 30,
+      "questions": [
+        {
+          "id": "_za6n112",
+          "text": "",
+          "marks": 1,
+          "choices": [
+            "",
+            ""
+          ],
+          "correctIndex": 0
+        }
+      ],
+      "capacity": null
+    }
+  ],
   "videos": [
     {
       "id": "_4w5sha1",
@@ -144,6 +165,46 @@
       "title": "sisson (part 3)",
       "lesson": "",
       "url": "https://drive.google.com/file/d/18Wb02J26FeJbUIhI_H0cl1iC-k187sHK/view?usp=drive_link",
+      "thumb": ""
+    },
+    {
+      "id": "_18jih1y",
+      "courseId": "_57c55ke",
+      "title": "Session 2 part 1",
+      "lesson": "",
+      "url": "https://drive.google.com/file/d/1Hxn_mUJs9XL_5MvHCdE2NcKzVcPD-NFL/view?usp=drive_link",
+      "thumb": ""
+    },
+    {
+      "id": "_k9hvm2z",
+      "courseId": "_57c55ke",
+      "title": "Sessio 2 part 2",
+      "lesson": "",
+      "url": "https://drive.google.com/file/d/1rJOflomkOOqHskJ2MhEkIVGtaTgurdwK/view?usp=drive_link",
+      "thumb": ""
+    },
+    {
+      "id": "_tsju72i",
+      "courseId": "_57c55ke",
+      "title": "Session 2 part 3",
+      "lesson": "",
+      "url": "https://drive.google.com/file/d/1AjxaOKgHyG9t8L0v6wM9eH4uQnf3_uDw/view?usp=drive_link",
+      "thumb": ""
+    },
+    {
+      "id": "_g9y8oqz",
+      "courseId": "_57c55ke",
+      "title": "Session 2 part 4",
+      "lesson": "",
+      "url": "https://drive.google.com/file/d/1rJOflomkOOqHskJ2MhEkIVGtaTgurdwK/view?usp=drive_link",
+      "thumb": ""
+    },
+    {
+      "id": "_s5zvdrf",
+      "courseId": "_57c55ke",
+      "title": "Session 2 part 5",
+      "lesson": "",
+      "url": "https://drive.google.com/file/d/1eoAbDlZIIpZfPmq4Xg3hEQQ0hgliKOyL/view?usp=drive_link",
       "thumb": ""
     }
   ],
@@ -187,6 +248,22 @@
       "pdfUrl": "https://docs.google.com/document/d/1PAv4YesoUS_-hb1qCgrGBQx6I5gX2xsT51IimcWOcx4/edit?usp=drive_link",
       "imgUrl": "",
       "desc": ""
+    },
+    {
+      "id": "_69yrywy",
+      "courseId": "_57c55ke",
+      "name": "Session 2",
+      "pdfUrl": "https://drive.google.com/file/d/1vp8CjbtVpKZg5etXL3XORl1lceOcNqus/view?usp=drive_link",
+      "imgUrl": "",
+      "desc": ""
+    },
+    {
+      "id": "_bhz01vf",
+      "courseId": "_57c55ke",
+      "name": "امتحان المحاضره الاولى  فك الضغط اولا عن الملف",
+      "pdfUrl": "https://drive.google.com/file/d/1GJmAMHBRDXU45AFFP_r0VfRdeYT6XIjh/view?usp=drive_link",
+      "imgUrl": "",
+      "desc": ""
     }
   ],
   "announcements": [
@@ -203,5 +280,5 @@
     "sheetUrl": "https://script.google.com/macros/s/AKfycbxwF0hGuJnB5ZcOluOaf2J69NDnAH8CPwdOAmpfyF6mIie7ovufMPlzVAt3QMs39hoS/exec",
     "namesSheetUrl": "https://script.google.com/macros/s/AKfycbynpDXFDRubgHkWhhmKHZ3g4YrB1K-lAW6ACcFxL5BR6Kr6CyXN3L-_slvbx_Nw39uQ/exec"
   },
-  "exportedAt": "2026-07-15T07:22:01.351Z"
+  "exportedAt": "2026-07-20T07:36:37.282Z"
 }
