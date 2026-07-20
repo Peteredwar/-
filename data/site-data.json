@@ -264,6 +264,14 @@
       "pdfUrl": "https://drive.google.com/file/d/1GJmAMHBRDXU45AFFP_r0VfRdeYT6XIjh/view?usp=drive_link",
       "imgUrl": "",
       "desc": ""
+    },
+    {
+      "id": "_i2td9j1",
+      "courseId": "_57c55ke",
+      "name": "قاموس الكلمات الصعبه فى اول محاضره",
+      "pdfUrl": "https://drive.google.com/file/d/1J51cAZwxOvl-w9mpcW9ZQo33GXkfV0q5/view?usp=drive_link",
+      "imgUrl": "",
+      "desc": "الملف مضغوط قك الضغط ستجد ملفين واحج ناطق واخر عادى"
     }
   ],
   "announcements": [
@@ -287,5 +295,5 @@
     "sheetUrl": "https://script.google.com/macros/s/AKfycbxwF0hGuJnB5ZcOluOaf2J69NDnAH8CPwdOAmpfyF6mIie7ovufMPlzVAt3QMs39hoS/exec",
     "namesSheetUrl": "https://script.google.com/macros/s/AKfycbynpDXFDRubgHkWhhmKHZ3g4YrB1K-lAW6ACcFxL5BR6Kr6CyXN3L-_slvbx_Nw39uQ/exec"
   },
-  "exportedAt": "2026-07-20T07:54:04.873Z"
+  "exportedAt": "2026-07-20T13:03:58.753Z"
 }
