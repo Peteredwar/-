@@ -273,6 +273,13 @@
       "type": "info",
       "body": "الان كورس التأسيس علي المنصه",
       "date": ""
+    },
+    {
+      "id": "_mzdb026",
+      "title": "المحاضره التانيه الان علي المنصه",
+      "type": "info",
+      "body": "المحاضره التانيه الان علي المنصه",
+      "date": "2026-07-20"
     }
   ],
   "settings": {
@@ -280,5 +287,5 @@
     "sheetUrl": "https://script.google.com/macros/s/AKfycbxwF0hGuJnB5ZcOluOaf2J69NDnAH8CPwdOAmpfyF6mIie7ovufMPlzVAt3QMs39hoS/exec",
     "namesSheetUrl": "https://script.google.com/macros/s/AKfycbynpDXFDRubgHkWhhmKHZ3g4YrB1K-lAW6ACcFxL5BR6Kr6CyXN3L-_slvbx_Nw39uQ/exec"
   },
-  "exportedAt": "2026-07-20T07:46:38.196Z"
+  "exportedAt": "2026-07-20T07:54:04.873Z"
 }
