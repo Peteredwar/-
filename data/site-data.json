@@ -296,6 +296,14 @@
       "pdfUrl": "https://drive.google.com/file/d/1J51cAZwxOvl-w9mpcW9ZQo33GXkfV0q5/view?usp=drive_link",
       "imgUrl": "",
       "desc": "الملف مضغوط قك الضغط ستجد ملفين واحج ناطق واخر عادى"
+    },
+    {
+      "id": "_kyopm66",
+      "courseId": "_57c55ke",
+      "name": "المحاضرة الثالثة",
+      "pdfUrl": "https://drive.google.com/file/d/1UajNOrw4cRn1RnSwA9od9Pie2qL0swJQ/view?usp=sharing",
+      "imgUrl": "",
+      "desc": ""
     }
   ],
   "announcements": [
@@ -319,5 +327,5 @@
     "sheetUrl": "https://script.google.com/macros/s/AKfycbxwF0hGuJnB5ZcOluOaf2J69NDnAH8CPwdOAmpfyF6mIie7ovufMPlzVAt3QMs39hoS/exec",
     "namesSheetUrl": "https://script.google.com/macros/s/AKfycbynpDXFDRubgHkWhhmKHZ3g4YrB1K-lAW6ACcFxL5BR6Kr6CyXN3L-_slvbx_Nw39uQ/exec"
   },
-  "exportedAt": "2026-07-22T13:09:19.287Z"
+  "exportedAt": "2026-07-22T14:13:19.866Z"
 }
